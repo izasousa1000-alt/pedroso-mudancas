@@ -713,3 +713,6 @@ footer {
 .service-icon.icon-route{position:relative;display:block;width:42px;height:28px;margin-bottom:14px}.service-icon.icon-route::before{content:"";position:absolute;top:12px;left:4px;width:34px;height:3px;background:currentColor}.service-icon.icon-route::after{content:"";position:absolute;top:8px;right:0;width:10px;height:10px;border-top:3px solid currentColor;border-right:3px solid currentColor;transform:rotate(45deg)}
 /* Remove apenas o traço decorativo ao lado da marca no topo. */
 .topbar .brand-mark{display:none}.topbar .brand{gap:0}
+
+/* Mantém o traço do cabeçalho e remove somente a linha do último bloco. */
+.topbar .brand-mark{display:flex}.topbar .brand{gap:10px}.final-content .eyebrow span{display:none}
