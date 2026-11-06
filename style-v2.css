@@ -1,0 +1,710 @@
+/* Refinamentos visuais e interações da página Pedroso Mudanças. */
+
+/* Banner: mais respiro para o texto e altura suficiente para nenhum elemento ficar oculto. */
+.hero {
+  height: max(790px, calc(100vh - 82px));
+  min-height: 790px;
+}
+
+.hero-content {
+  padding: clamp(82px, 8vw, 116px) 30px 164px;
+}
+
+.hero h1 {
+  max-width: 900px;
+  font-size: clamp(48px, 5.55vw, 86px);
+  line-height: 1.06;
+  letter-spacing: -0.7px;
+}
+
+.hero-copy {
+  max-width: 640px;
+  margin-top: 25px;
+}
+
+.road {
+  height: 86px;
+}
+
+/* Linha do tempo vertical: acompanha a rolagem e destaca a etapa em andamento. */
+.process {
+  --timeline-progress: 0%;
+  min-height: 980px;
+  padding: 132px 0 142px;
+}
+
+.process .section-shell { width: min(var(--max), calc(100% - 60px)); }
+
+.process-top {
+  display: block;
+  margin-bottom: 64px;
+}
+
+.process-top .section-label { margin-bottom: 20px; }
+.process-top h2 { max-width: 760px; margin: 0; }
+
+.timeline-grid {
+  position: relative;
+  display: block;
+  max-width: 850px;
+  margin-left: 16%;
+  padding: 0 0 0 130px;
+  border: 0;
+}
+
+.timeline-grid::before,
+.timeline-grid::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 37px;
+  width: 3px;
+  border-radius: 99px;
+}
+
+.timeline-grid::before { background: #5a5a55; }
+.timeline-grid::after {
+  bottom: auto;
+  height: var(--timeline-progress);
+  background: var(--yellow);
+  box-shadow: 0 0 16px rgba(255, 205, 22, .72), 0 0 36px rgba(255, 205, 22, .32);
+  transition: height .2s linear;
+}
+
+.timeline-grid article {
+  position: relative;
+  min-height: 160px;
+  margin: 0 0 44px;
+  padding: 14px 30px 24px 0;
+  border: 0;
+  border-bottom: 1px solid #3e3e3a;
+  opacity: .46;
+  transform: translateX(12px);
+  transition: opacity .32s ease, transform .32s ease;
+}
+
+.timeline-grid article:last-child { margin-bottom: 0; border-bottom: 0; }
+
+.timeline-grid article b {
+  position: absolute;
+  top: 0;
+  left: -130px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: 0;
+  color: #fff;
+  background: #1b1b19;
+  border: 2px solid #777770;
+  border-radius: 50%;
+  font: 700 13px "DM Mono", monospace;
+  transition: .32s ease;
+}
+
+.timeline-grid article.is-active { opacity: 1; transform: translateX(0); }
+.timeline-grid article.is-active b {
+  color: #171715;
+  background: var(--yellow);
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 8px rgba(255, 205, 22, .14), 0 0 22px rgba(255, 205, 22, .55);
+}
+
+.timeline-grid h3 {
+  margin: 0 0 11px;
+  font-size: 31px;
+  line-height: 1;
+}
+
+.timeline-grid p { max-width: 420px; font-size: 14px; }
+
+/* Galeria profissional com registros reais da frota no perfil Google da empresa. */
+.fleet-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr .95fr;
+  grid-template-rows: 1.08fr .92fr;
+  gap: 12px;
+  min-height: 488px;
+}
+
+.fleet-gallery figure { position: relative; min-width: 0; margin: 0; overflow: hidden; background: #1a1a18; }
+.fleet-gallery img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.92) contrast(1.08); transition: transform .6s ease, filter .4s ease; }
+.fleet-gallery figure:hover img { transform: scale(1.055); filter: saturate(1.06) contrast(1.04); }
+.fleet { align-items: start; gap: clamp(44px, 5vw, 76px); padding: 92px 0 64px; }
+.gallery-main { grid-column: 1 / 3; grid-row: 1; }
+.gallery-main img { object-position: 52% 72%; }
+.gallery-feature { grid-column: 3; grid-row: 1 / 3; }
+.gallery-feature img { object-position: center 54%; transform: scale(1.28); }
+.gallery-feature:hover img { transform: scale(1.34); }
+.gallery-detail { grid-row: 2; }
+.gallery-detail-one { grid-column: 1; }
+.gallery-detail-two { grid-column: 2; }
+.gallery-detail-one img { object-position: center 35%; }
+.gallery-detail-two img { object-position: center 58%; }
+.gallery-main::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.78)); }
+.gallery-main figcaption { position: absolute; z-index: 1; right: 16px; bottom: 15px; color: #fff; font: 600 10px/1.35 "DM Mono", monospace; letter-spacing: .8px; text-align: right; text-transform: uppercase; }
+.gallery-main figcaption span { display: block; margin-bottom: 4px; color: var(--yellow); font-size: 9px; }
+
+/* Ações com mais presença e reflexo contínuo. */
+.glow-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  min-width: 254px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, .16);
+  isolation: isolate;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+
+.glow-button::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -45%;
+  left: -44%;
+  width: 26%;
+  height: 190%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .82), transparent);
+  transform: skewX(-22deg);
+  animation: button-glint 2.8s ease-in-out infinite;
+}
+
+.glow-button:hover { transform: translateY(-3px); box-shadow: 0 13px 28px rgba(0, 0, 0, .28); }
+
+.fleet-button {
+  min-width: 260px;
+  padding: 17px 19px;
+  color: #fff;
+  background: #171716;
+  border-color: var(--yellow);
+  border-bottom: 1px solid var(--yellow);
+}
+
+.faq-button { min-width: 255px; padding: 18px 22px; }
+.final-button { min-width: 338px; padding: 19px 22px; }
+
+@keyframes button-glint {
+  0%, 48% { left: -44%; opacity: 0; }
+  54% { opacity: 1; }
+  75%, 100% { left: 125%; opacity: 0; }
+}
+
+/* Avaliações no formato de cartões de Google, em faixa contínua sem pausa. */
+.reviews { padding-bottom: 88px; }
+.reviews-head .section-label { margin-bottom: 16px; }
+.rating-summary p b { display: inline-block; margin-right: 4px; color: #111; font: 800 25px/1 "Oswald", sans-serif; vertical-align: -2px; }
+.marquee { padding: 0 30px; }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 18px;
+  animation: reviews-flow 24s linear infinite;
+  animation-play-state: running;
+  will-change: transform;
+}
+
+.marquee:hover .marquee-track { animation-play-state: running; }
+.review-set { display: contents; }
+
+.review-card,
+.review-card.yellow {
+  display: flex;
+  flex: 0 0 365px;
+  flex-direction: column;
+  width: 365px;
+  min-height: 278px;
+  padding: 25px;
+  color: #151515;
+  background: #fbfaf7;
+  border: 1px solid rgba(17, 17, 17, .08);
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(45, 37, 2, .16);
+}
+
+.review-top { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 12px; }
+.review-top .avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  background: #2d5429;
+  border-radius: 50%;
+  font: 700 15px/1 "Manrope", sans-serif;
+}
+
+.review-top .avatar-er { background: #8c5d3b; }
+.review-top .avatar-ss { background: #416f89; }
+.review-top strong { display: block; font: 800 16px/1.15 "Manrope", sans-serif; }
+.review-top small { display: block; margin-top: 5px; color: #676767; font-size: 11px; }
+
+.google-mark {
+  font: 800 27px/1 Arial, sans-serif;
+  background: conic-gradient(from -38deg, #4285f4 0 27%, #34a853 27% 43%, #fbbc05 43% 65%, #ea4335 65% 82%, #4285f4 82%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.review-stars { margin: 20px 0 12px; color: #f6b900; font: 700 24px/1 Arial, sans-serif; letter-spacing: 1px; }
+.review-stars span { display: inline-grid; place-items: center; width: 16px; height: 16px; margin-left: 4px; color: #fff; background: #4e8df6; border-radius: 50%; font-size: 11px; vertical-align: 2px; }
+.review-card blockquote { margin: 0; font: 500 17px/1.5 "Manrope", sans-serif; }
+.review-source { margin-top: auto; padding-top: 14px; color: #777; font-size: 12px; }
+
+@keyframes reviews-flow {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-33.333333% - 6px), 0, 0); }
+}
+
+@media (max-width: 850px) {
+  .hero { height: auto; min-height: 780px; }
+  .hero-content { padding: 84px 24px 165px; }
+  .hero h1 { max-width: 670px; font-size: clamp(46px, 11.2vw, 72px); line-height: 1.04; }
+  .hero-copy { max-width: 540px; }
+  .process { min-height: auto; padding: 94px 0 106px; }
+  .process .section-shell { width: min(var(--max), calc(100% - 40px)); }
+  .process-top { display: block; margin-bottom: 38px; }
+  .process-top .section-label { margin-bottom: 24px; }
+  .timeline-grid { display: block; max-width: 640px; margin-left: 0; padding: 0 0 0 94px; }
+  .timeline-grid::before,
+  .timeline-grid::after { top: 0; left: 30px; width: 3px; height: 100%; }
+  .timeline-grid::after { height: var(--timeline-progress); }
+  .timeline-grid article,
+  .timeline-grid article:not(:first-child) { min-height: 156px; margin-bottom: 38px; padding: 0 0 27px; border-bottom: 1px solid #3e3e3a; transform: translateX(8px); }
+  .timeline-grid article.is-active { transform: translateX(-2px); }
+  .timeline-grid article b,
+  .timeline-grid article:not(:first-child) b { top: -10px; left: -94px; width: 64px; height: 64px; }
+  .timeline-grid h3 { padding-top: 0; font-size: 25px; }
+  .timeline-grid p { max-width: 360px; }
+  .fleet-gallery { min-height: 430px; order: 2; }
+  .marquee { padding: 0 18px; }
+  .review-card,
+  .review-card.yellow { width: min(350px, calc(100vw - 48px)); flex-basis: min(350px, calc(100vw - 48px)); min-height: 270px; }
+}
+
+@media (max-width: 500px) {
+  .hero { min-height: 810px; }
+  .hero-content { padding-top: 74px; }
+  .hero h1 { font-size: clamp(44px, 13.2vw, 60px); }
+  .proof-row { display: none; }
+  .glow-button,
+  .fleet-button,
+  .faq-button,
+  .final-button { min-width: min(100%, 340px); }
+  .review-card blockquote { font-size: 16px; }
+  .fleet { padding: 74px 0 62px; }
+  .fleet-gallery { min-height: 420px; grid-template-columns: 1.1fr .65fr .65fr; gap: 8px; }
+  .gallery-main figcaption { right: 10px; bottom: 10px; font-size: 8px; }
+}
+
+/* Galeria editorial: cartões verticais com leitura semelhante a um portfólio. */
+.fleet {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(290px, .82fr);
+  align-items: stretch;
+  gap: clamp(22px, 2.2vw, 38px);
+  padding: 88px 0 72px;
+}
+.fleet-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: 1fr;
+  gap: clamp(12px, 1.4vw, 22px);
+  min-height: 474px;
+  order: initial;
+}
+.fleet-gallery figure,
+.gallery-main,
+.gallery-feature,
+.gallery-detail,
+.gallery-detail-one {
+  grid-column: auto;
+  grid-row: auto;
+  border-radius: 25px;
+  box-shadow: 0 20px 34px rgba(20, 20, 18, .16);
+}
+.fleet-gallery figure::after {
+  content: "";
+  position: absolute;
+  inset: 44% 0 0;
+  background: linear-gradient(transparent, rgba(8, 8, 8, .84));
+  pointer-events: none;
+}
+.fleet-gallery img,
+.gallery-main img,
+.gallery-feature img,
+.gallery-detail-one img {
+  height: 100%;
+  transform: scale(1);
+}
+.gallery-main img { object-position: 52% 70%; }
+.gallery-feature img { object-position: center 52%; }
+.gallery-detail-one img { object-position: center 42%; }
+.fleet-gallery figure:hover img,
+.gallery-feature:hover img { transform: scale(1.055); }
+.fleet-gallery figcaption,
+.gallery-main figcaption {
+  right: 18px;
+  bottom: 17px;
+  left: 18px;
+  z-index: 2;
+  color: #fff;
+  font: 700 11px/1.35 "DM Mono", monospace;
+  letter-spacing: .35px;
+  text-align: left;
+  text-transform: uppercase;
+}
+.fleet-gallery figcaption span,
+.gallery-main figcaption span {
+  margin-bottom: 5px;
+  color: var(--yellow);
+  font-size: 9px;
+  letter-spacing: 1.3px;
+}
+.fleet-cta-card {
+  position: relative;
+  display: flex;
+  min-height: 474px;
+  overflow: hidden;
+  padding: clamp(28px, 3vw, 44px) clamp(25px, 2.3vw, 38px);
+  color: #fff;
+  background: #151513;
+  border-radius: 25px;
+  box-shadow: 0 20px 34px rgba(20, 20, 18, .16);
+}
+.fleet-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: .18;
+  filter: grayscale(1) contrast(1.15);
+}
+.fleet-cta-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, rgba(13, 13, 12, .95), rgba(17, 17, 15, .77));
+}
+.fleet-card-inner { position: relative; z-index: 1; display: flex; flex-direction: column; }
+.fleet-cta-card .section-label { margin-bottom: 22px; color: #fff; }
+.fleet-cta-card .section-label span { color: var(--yellow); }
+.fleet-cta-card h2 { margin: 0; color: #fff; font-size: clamp(31px, 2.7vw, 52px); line-height: .94; overflow-wrap: break-word; }
+.fleet-cta-card h2 em { color: var(--yellow); white-space: normal; }
+.fleet-cta-card p { margin: 24px 0 0; color: rgba(255, 255, 255, .78); font-size: 16px; line-height: 1.55; }
+.fleet-cta-card ul { display: none; }
+.fleet-cta-card .fleet-button {
+  width: 100%;
+  min-width: 0;
+  margin-top: auto;
+  padding: 17px 18px;
+  color: #111;
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+.fleet-cta-card .fleet-button:hover { color: #111; background: #fff; border-color: #fff; }
+
+@media (max-width: 980px) {
+  .fleet { grid-template-columns: minmax(0, 1.45fr) minmax(260px, .85fr); }
+  .fleet-gallery,
+  .fleet-cta-card { min-height: 420px; }
+  .fleet-cta-card h2 { font-size: 32px; }
+  .fleet-cta-card p { font-size: 14px; }
+}
+
+@media (max-width: 760px) {
+  .fleet { display: block; padding: 72px 0 64px; }
+  .fleet-gallery { min-height: 350px; margin-bottom: 14px; }
+  .fleet-gallery figure,
+  .fleet-cta-card { border-radius: 18px; }
+  .fleet-cta-card { min-height: auto; padding: 31px 27px; }
+  .fleet-cta-card h2 { font-size: clamp(34px, 9.2vw, 48px); }
+  .fleet-cta-card p { font-size: 15px; }
+  .fleet-cta-card .fleet-button { margin-top: 30px; }
+}
+
+@media (max-width: 500px) {
+  .fleet-gallery { min-height: 320px; gap: 9px; }
+  .fleet-gallery figcaption,
+  .gallery-main figcaption { right: 9px; bottom: 10px; left: 9px; font-size: 7px; }
+  .fleet-gallery figcaption span,
+  .gallery-main figcaption span { margin-bottom: 3px; font-size: 7px; letter-spacing: .5px; }
+}
+
+/* Último refinamento: fotos maiores e CTA mais direto. */
+.fleet { grid-template-columns: minmax(0, 2.45fr) minmax(285px, .72fr); }
+.fleet-gallery { min-height: 500px; }
+.fleet-cta-card { min-height: 500px; padding: 32px 30px; }
+.fleet-cta-card h2 { font-size: clamp(32px, 2.35vw, 44px); line-height: .98; }
+.fleet-cta-card p { margin-top: 20px; font-size: 15px; }
+
+.whatsapp-float {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  right: 26px;
+  bottom: 24px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, .72), 0 13px 30px rgba(0, 0, 0, .24);
+  animation: whatsapp-pulse 1.75s ease-out infinite;
+}
+.whatsapp-float span { display: none; }
+.whatsapp-float svg { width: 31px; height: 31px; }
+.whatsapp-float:hover { animation-play-state: paused; transform: translateY(-3px) scale(1.05); }
+@keyframes whatsapp-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, .62), 0 13px 30px rgba(0, 0, 0, .24); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0), 0 13px 30px rgba(0, 0, 0, .24); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0), 0 13px 30px rgba(0, 0, 0, .24); }
+}
+@media (max-width: 980px) {
+  .fleet { grid-template-columns: minmax(0, 1.45fr) minmax(260px, .85fr); }
+  .fleet-gallery,
+  .fleet-cta-card { min-height: 420px; }
+  .fleet-cta-card h2 { font-size: 32px; }
+}
+@media (max-width: 760px) {
+  .fleet-gallery { min-height: 350px; }
+  .fleet-cta-card { min-height: auto; }
+}
+@media (max-width: 500px) {
+  .whatsapp-float { width: 58px; height: 58px; right: 16px; bottom: 16px; }
+  .fleet-gallery { min-height: 320px; }
+}
+
+/* Chamada da frota fora da galeria: ela conduz a leitura e as fotos ocupam toda a largura. */
+.fleet { display: block; padding: 104px 0 90px; }
+.fleet-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(290px, .65fr);
+  gap: clamp(34px, 7vw, 110px);
+  align-items: end;
+  margin-bottom: 48px;
+}
+.fleet-intro .section-label { margin-bottom: 20px; }
+.fleet-intro h2 {
+  max-width: 760px;
+  margin: 0;
+  font: 700 clamp(52px, 6vw, 92px)/1.08 Oswald, sans-serif;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+.fleet-intro h2 em { display: inline-block; margin-top: .05em; color: var(--yellow-deep); font-style: normal; }
+.fleet-intro-copy { max-width: 390px; padding-bottom: 4px; }
+.fleet-intro-copy p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+.fleet-intro-copy .fleet-button { margin-top: 26px; min-width: 255px; }
+.fleet-gallery { min-height: 510px; }
+
+@media (max-width: 760px) {
+  .fleet { padding: 78px 0 68px; }
+  .fleet-intro { display: block; margin-bottom: 30px; }
+  .fleet-intro h2 { font-size: clamp(45px, 12.5vw, 68px); }
+  .fleet-intro-copy { max-width: 440px; margin-top: 24px; }
+  .fleet-intro-copy .fleet-button { margin-top: 20px; }
+  .fleet-gallery { min-height: 360px; }
+}
+
+@media (max-width: 500px) {
+  .fleet-gallery { min-height: 320px; }
+  .fleet-intro-copy p { font-size: 15px; }
+}
+
+/* Tipografia mais suave, inspirada na referência enviada, e botões em formato de pílula. */
+body,
+.button,
+.header-cta,
+.topbar nav,
+.hero-copy,
+.intro-heading p,
+.fleet-intro-copy p,
+.faq-intro > p,
+.review-card,
+.faq-list summary,
+.faq-list p,
+footer {
+  font-family: "Nunito Sans", "Trebuchet MS", Arial, sans-serif;
+}
+
+.hero h1,
+.intro h2,
+.process h2,
+.fleet h2,
+.reviews h2,
+.faq h2,
+.final-cta h2,
+.service-card h3,
+.process-grid h3,
+.rating-summary strong,
+.proof-row strong {
+  font-family: "Nunito Sans", "Trebuchet MS", Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -1.6px;
+}
+
+.button,
+.header-cta {
+  border-radius: 999px;
+}
+
+.button-outline { border-radius: 999px; }
+
+/* Escala tipográfica equilibrada: preserva impacto, sem ocupar espaço excessivo. */
+.eyebrow,
+.section-label,
+.gallery-main figcaption {
+  font-family: "Nunito Sans", "Trebuchet MS", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: .8px;
+}
+
+.eyebrow { letter-spacing: 1px; }
+.section-label span { font-family: "Nunito Sans", "Trebuchet MS", Arial, sans-serif; font-weight: 900; }
+
+.hero h1 {
+  max-width: 860px;
+  font-size: clamp(46px, 4.8vw, 76px);
+  line-height: 1.04;
+}
+
+.intro h2,
+.process h2,
+.reviews h2,
+.faq h2 {
+  font-size: clamp(38px, 3.8vw, 60px);
+  line-height: 1.04;
+}
+
+.fleet-intro h2 {
+  max-width: 660px;
+  font-size: clamp(44px, 4.6vw, 72px);
+  line-height: 1.05;
+}
+
+.final-content h2 {
+  max-width: 690px;
+  font-size: clamp(42px, 4.6vw, 68px);
+  line-height: 1.04;
+}
+
+.reviews-head > div:first-child { max-width: 710px; }
+.rating-summary strong { font-size: 48px; }
+
+@media (max-width: 760px) {
+  .hero h1 { font-size: clamp(42px, 10vw, 56px); }
+  .intro h2,
+  .process h2,
+  .reviews h2,
+  .faq h2 { font-size: clamp(36px, 9vw, 50px); }
+  .fleet-intro h2 { font-size: clamp(40px, 10vw, 54px); }
+  .final-content h2 { font-size: clamp(40px, 10vw, 54px); }
+  .section-label,
+  .eyebrow { font-size: 10px; }
+}
+
+/* Refinos de leitura nas seções de processo e avaliações. */
+.process-top h2 {
+  max-width: 920px;
+  font-size: clamp(36px, 3.35vw, 52px);
+  letter-spacing: -1.3px;
+}
+
+.reviews h2 {
+  font-size: clamp(36px, 3.3vw, 52px);
+  line-height: 1.08;
+}
+
+.reviews-head { margin-bottom: 66px; }
+
+/* Dá presença à prova social ao lado do total de avaliações. */
+.rating-summary p {
+  margin-top: 10px;
+  font-family: "Nunito Sans", "Trebuchet MS", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .15px;
+  line-height: 1.25;
+}
+
+.rating-summary p b {
+  margin-right: 7px;
+  font-family: "Nunito Sans", "Trebuchet MS", Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 900;
+  vertical-align: -3px;
+}
+
+/* A seção de serviços ganha mais presença e um texto-guia fácil de notar. */
+.intro-heading > p {
+  max-width: 430px;
+  padding-top: 16px;
+  border-top: 3px solid var(--yellow-deep);
+  color: #45443f;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.service-card { min-height: 305px; }
+
+/* Evita textos comprimidos quando a tela ainda não comporta quatro cards. */
+@media (max-width: 1050px) and (min-width: 761px) {
+  .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .service-card { min-height: 320px; }
+}
+
+@media (max-width: 760px) {
+  .process-top h2 { font-size: clamp(34px, 8.7vw, 48px); }
+  .reviews h2 { font-size: clamp(34px, 8.2vw, 46px); }
+  .reviews-head { margin-bottom: 52px; }
+  .rating-summary p { font-size: 14px; }
+  .rating-summary p b { font-size: 28px; }
+  .intro-heading > p { max-width: 510px; font-size: 16px; }
+  .service-card { min-height: 290px; }
+}
+
+/* Celulares: largura de leitura segura e fotos em sequência, sem compressão. */
+@media (max-width: 760px) {
+  .section-shell { width: min(var(--max), calc(100% - 48px)); }
+
+  .intro h2,
+  .process h2,
+  .fleet-intro h2,
+  .reviews h2,
+  .faq h2,
+  .final-content h2 {
+    max-width: 100%;
+    font-size: clamp(32px, 9.2vw, 48px);
+    letter-spacing: -1.1px;
+    overflow-wrap: anywhere;
+  }
+
+  .fleet-gallery {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(3, minmax(250px, 64vw));
+    min-height: auto;
+    gap: 16px;
+  }
+
+  .fleet-gallery figure { min-height: 250px; }
+  .fleet-gallery figcaption { font-size: 10px; }
+  .fleet-gallery figcaption span { font-size: 9px; }
+}
+
+@media (max-width: 640px) {
+  .service-grid { grid-template-columns: minmax(0, 1fr); }
+  .service-card { min-height: 300px; padding: 28px; }
+  .service-card h3 { font-size: clamp(26px, 8.7vw, 34px); overflow-wrap: anywhere; }
+}
